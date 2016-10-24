@@ -38,9 +38,12 @@ rootInt a b = a + ((b-a) `div` 2)
 isPrime n
 	| (n<0) = error "no negative numbers"
 	| (n==1) = False
+	| (n==2) = True
+	| (n==3) = True
+	| (n==4) = False
 	| otherwise = isPrimeHelp n 2 (root 2 n) True
 
 isPrimeHelp n a b acc
-	| (a==b) =  True && acc
+	| (a==b) =  (n `mod` a /= 0) && acc
 	| otherwise = isPrimeHelp n (a+1) b ((n `mod` a /= 0) && acc)
 		
