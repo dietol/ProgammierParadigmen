@@ -17,4 +17,5 @@ pow3Help b e acc
 	| (e==0) = 1
 	| (odd e) = pow3Help (pow3Help b 2 b) ((e-1) `div` 2) acc*b
 	| otherwise = pow3Help b (e-1) acc*b
-	 
+	
+ 
