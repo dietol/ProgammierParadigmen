@@ -32,7 +32,24 @@ mergeRek (x:xs) (y:ys) (z:zs)
 	| otherwise = mergeRek (x:xs) ys (z:zs ++ [y])
 
 mergeSort [] = []
-mergeSort (x:xs) = 
-	| length x:xs == 1 = x:xs
-	| otherwise = merge mergeSort LINKS mergeSort RECHTS
-	where left (x:xs) 
+mergeSort (x:xs)  
+	| length (x:xs) == 1 = x:xs
+	| otherwise = merge (mergeSort (leftDiv (x:xs))) (mergeSort (rightDiv (x:xs))) 
+
+leftDiv [] = []
+leftDiv (x:xs) = leftDivHelp xs [x] ((div (length (x:xs)) 2)- 1)
+
+leftDivHelp (x:xs) (y:ys) a
+	| a < 0 = error "rekursion error"
+	| a == 0 = y:ys
+	| otherwise = leftDivHelp xs (y:ys ++ [x]) (a-1)
+
+rightDiv [] = []
+rightDiv (x:xs) = reverse (rightDivHelp (reverse (init xs)) [last xs] ((div (length (x:xs)) 2) + (mod (length (x:xs)) 2)))
+
+rightDivHelp (x:xs) (y:ys) a
+        | a < 0 = error "rekursion error"
+        | a == 1 = y:ys
+        | otherwise = rightDivHelp xs (y:ys ++ [x]) (a-1)
+
+
