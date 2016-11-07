@@ -45,3 +45,14 @@ rightHelp e r a b
         | odd (b-a) && (((a + (div (b-a-1) 2))^e) > r) = a + (div (b-a-1) 2)
         | otherwise = error "uncatched pattern. stupid!"
 
+isPrime x
+	| x < 0 = error "calculating not possible"
+	| (x == 0) || (x == 1) = error "0 and 1 are no prims"
+	| (x == 2) = True
+	| otherwise = isPrimeRek x ((root 2 x) + 1)
+
+isPrimeRek x a
+	| a < 0 = error "something is wrong..."
+	| a < 2 = True
+	| (mod x a == 0) = False
+	| otherwise = isPrimeRek x (a-1)
