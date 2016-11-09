@@ -52,4 +52,8 @@ rightDivHelp (x:xs) (y:ys) a
         | a == 1 = y:ys
         | otherwise = rightDivHelp xs (y:ys ++ [x]) (a-1)
 
+rightDivHelp [] (y:ys) a
+        | a == 1 = y:ys
+        | otherwise = error "fuck off"
+
 
