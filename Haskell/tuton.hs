@@ -37,3 +37,22 @@ capital :: String -> String
 capital "" = "Empty string, whoops!"  
 capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
 
+zip' :: [a] -> [b] -> [(a,b)]  
+zip' _ [] = []  
+zip' [] _ = []  
+zip' (x:xs) (y:ys) = (x,y):zip' xs ys
+
+chain :: (Integral a) => a -> [a]  
+chain 1 = [1]  
+chain n  
+    | even n =  n:chain (n `div` 2)  
+    | odd n  =  n:chain (n*3 + 1)  
+
+rev xs = foldl (\acc x -> x:acc) [] xs
+
+sum'' = foldr (\x acc -> x+acc) 0 
+
+head'' = foldr1 (\x _ -> x)  
+
+head''' = foldl1 
+
